@@ -80,7 +80,16 @@
       class="kanban_card_container"
       (cdkDropListDropped)="drop($event)"
       >
-      <div class="kanban_card" *ngFor="let item of soldItems" cdkDrag>{{item}}</div>
+      <div class="kanban_card" *ngFor="let item of soldItems" cdkDrag>
+        <div class="container">
+          <button class = "close">
+              X
+          </button> 
+
+        {{item}}
+  </div>
+        
+       </div>
     </div>
   </div>
 

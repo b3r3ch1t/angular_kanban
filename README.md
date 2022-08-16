@@ -7,7 +7,11 @@ ng add @angular/material
 
 ng generate component kanban
 
-3) import DragDropModule into app.Module.ts
+3) add bootstrap
+
+npm install bootstrap
+
+4) import DragDropModule into app.Module.ts
 
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
