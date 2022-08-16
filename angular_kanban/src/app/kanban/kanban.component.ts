@@ -26,7 +26,7 @@ export class KanbanComponent implements OnInit {
     {value: 'Mangoes', disabled: false},
   ];
 
-
+  task = '';
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -38,6 +38,10 @@ export class KanbanComponent implements OnInit {
         event.currentIndex,
       );
     }
+  }
+
+  onAddCard(){
+
   }
 
 }
