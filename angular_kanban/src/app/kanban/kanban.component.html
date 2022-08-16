@@ -1,0 +1,40 @@
+<div cdkDropListGroup>
+    <div class="container">
+      <h2>Incoming Goods</h2>
+      <div
+      id="incoming"
+        cdkDropList
+        [cdkDropListData]="incomingItems"
+        cdkDropListConnectedTo="available"
+        class="list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="box" *ngFor="let item of incomingItems" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <h2>Available Goods</h2>
+      <div
+      id="available"
+        cdkDropList
+        [cdkDropListData]="availableItems"
+        cdkDropListConnectedTo="sold"
+        class="list"
+        (cdkDropListDropped)="drop($event)"
+        >
+        <div class="box" *ngFor="let item of availableItems" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <h2>Sold Out Goods</h2>
+      <div
+      id="sold"
+        cdkDropList
+        [cdkDropListData]="soldItems"
+        cdkDropListConnectedTo="available"
+        class="list"
+        (cdkDropListDropped)="drop($event)"
+        >
+        <div class="box" *ngFor="let item of soldItems" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+  </div>
