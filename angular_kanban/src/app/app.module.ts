@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KanbanComponent } from './kanban/kanban.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     AppRoutingModule,
     BrowserAnimationsModule, 
     DragDropModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

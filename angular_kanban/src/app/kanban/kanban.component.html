@@ -2,7 +2,7 @@
 <div class='kanban_view'>
   <div class='kanban_controls'>
     <div class='add_card'>
-      <input class='add_card_input' type="text" placeholder="New Task Name">
+      <input class='add_card_input'  [(ngModel)]="task" type="text" placeholder="New Task Name">
       <button class='add_card_btn' (click)="onAddCard()">Add</button>
     </div>
   </div>
@@ -17,33 +17,41 @@
 
   <div class='kanban_stage'>
     <h2 class='kanban_header'>Backlog</h2>
-    <div class='kanban_card_container'>
+    
+    <div
+      id="backLog"
+        cdkDropList
+        [cdkDropListData]="backLogItems"
+        cdkDropListConnectedTo="toDo"
+        (cdkDropListDropped)="drop($event)"      
+        class='kanban_card_container' >
+        <div class="kanban_card" *ngFor="let item of backLogItems" cdkDrag>
+          <div class="container">
+            <button class = "close" (click)="onCardDelete(item)">
+                X
+            </button> 
+  
+          {{item}}
 
-      <div class='kanban_card' >
-        Tomate
-      </div>
-    </div>
+          </div>
+         
+        </div>
+      </div> 
 
-    <div class='kanban_card_container'>
-
-      <div class='kanban_card' >
-        Abacaxi
-      </div>
-    </div>
   </div>
 
-  <div cdkDropListGroup class='kanban_stage'>
+  <div class='kanban_stage'>
     <h2 class='kanban_header'>To Do</h2>
 
      
       <div
-      id="incoming"
+      id="toDo"
         cdkDropList
-        [cdkDropListData]="incomingItems"
-        cdkDropListConnectedTo="available"
+        [cdkDropListData]="toDoItems"
+        cdkDropListConnectedTo="onGoing"
         class='kanban_card_container'
         (cdkDropListDropped)="drop($event)">
-        <div class="kanban_card" *ngFor="let item of incomingItems" cdkDrag>
+        <div class="kanban_card" *ngFor="let item of toDoItems" cdkDrag>
           {{item}} 
 
          
@@ -57,14 +65,14 @@
     <h2 class='kanban_header'>Ongoing</h2>
    
     <div
-    id="available"
+    id="onGoing"
       cdkDropList
-      [cdkDropListData]="availableItems"
-      cdkDropListConnectedTo="sold"
+      [cdkDropListData]="onGoingItems"
+      cdkDropListConnectedTo="done"
       class="kanban_card_container"
       (cdkDropListDropped)="drop($event)"
       >
-      <div class="kanban_card" *ngFor="let item of availableItems" cdkDrag>{{item}}</div>
+      <div class="kanban_card" *ngFor="let item of onGoingItems" cdkDrag>{{item}}</div>
     </div>
 
 
@@ -73,22 +81,14 @@
   <div class='kanban_stage'>
     <h2 class='kanban_header'>Done</h2>
     <div
-    id="sold"
+    id="done"
       cdkDropList
-      [cdkDropListData]="soldItems"
-      cdkDropListConnectedTo="available"
+      [cdkDropListData]="doneItens"
+      cdkDropListConnectedTo="backLog"
       class="kanban_card_container"
-      (cdkDropListDropped)="drop($event)"
-      >
-      <div class="kanban_card" *ngFor="let item of soldItems" cdkDrag>
-        <div class="container">
-          <button class = "close">
-              X
-          </button> 
-
-        {{item}}
-  </div>
-        
+      (cdkDropListDropped)="drop($event)"      >
+      <div class="kanban_card" *ngFor="let item of doneItens" cdkDrag> 
+        {{item}} 
        </div>
     </div>
   </div>

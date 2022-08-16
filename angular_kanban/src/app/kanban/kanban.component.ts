@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; 
 
 @Component({
   selector: 'app-kanban',
@@ -8,25 +7,23 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./kanban.component.css']
 })
 export class KanbanComponent implements OnInit {
+  public task : string;
 
-  constructor() { }
+  constructor() { 
+    this.task=''; 
+  }
 
   ngOnInit(): void {
   }
 
-  incomingItems = ['Carrots', 'Tomatoes', 'Onions', 'Apples', 'Avocados'];
+  backLogItems =['task1', 'task2']
 
-  availableItems = ['Oranges', 'Bananas', 'Cucumbers', 'Try to move me'];
+  toDoItems = ['task3', 'task4', 'task5', 'task6'];
 
-  soldItems = ['Pears', 'Strawberries', 'Limes', 'Mangoes'];
+  onGoingItems = ['task7', 'task8', 'task9', 'task10'];
 
-  items = [
-    {value: 'Oranges', disabled: false},
-    {value: 'Bananas', disabled: true},
-    {value: 'Mangoes', disabled: false},
-  ];
+  doneItens = ['task11', 'task12', 'task13', 'task14'];
 
-  task = '';
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -41,7 +38,17 @@ export class KanbanComponent implements OnInit {
   }
 
   onAddCard(){
-
+    this.backLogItems.push(this.task);
   }
+
+  onCardDelete(card: any) { 
+    
+    var index =  this.backLogItems.indexOf(card);
+    if (index !== -1) {
+      this.backLogItems.splice(index, 1);
+    } 
+  }
+
+ 
 
 }
